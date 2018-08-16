@@ -15,9 +15,8 @@ calculadora = (function(){
 	var displayNumber = "";
 	var loadCounter = 0;
 
-	load()
 	// Definición de métodos privados
-	function load(){
+	(function load(){
 		//Lectura de botones al inicializar el DOM
 		boton = document.querySelectorAll("img");
 		for (var i = 0; i < boton.length; i++) {
@@ -25,7 +24,7 @@ calculadora = (function(){
 			adds(i)
 			addsMouse(i)
 		}
-	}
+	}());
 
 	function adds(i){
 		boton[i].addEventListener("click",function(){clickButton(i)},false)
@@ -52,48 +51,41 @@ calculadora = (function(){
 
 	function clickButton(buttonClicked){
 		switch(botonID[buttonClicked]){
-			//Case on
+
 			case "on":
 				document.getElementById("display").innerHTML = 0;
 				OpPend = "no"
 				break
 
-			//Case mas
 			case "mas":
 				displayNumber = ""
 				solve("+")
 				document.getElementById("display").innerHTML = "";
 				break
 
-			//Case menos
 			case "menos":
 				solve("-")
 				document.getElementById("display").innerHTML = "";
 				break
 
-			//Case por
 			case "por":
 				solve("*")
 				document.getElementById("display").innerHTML = "";
 				break
 
-			//Case Dividido
 			case "dividido":
 				solve("/")
 				document.getElementById("display").innerHTML = "";
 				break
 
-			//Case Signo
 			case "sign":
 				document.getElementById("display").innerHTML = document.getElementById("display").innerHTML * -1
 				numberProv = numberProv * -1
 				break
 
-			//Case raiz
 			case "raiz":
 				break
 
-			//Case  igual
 			case "igual":
 				if (OpPend != "no") {
 					numberTwo = document.getElementById('display').innerHTML
